@@ -19,21 +19,6 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 //All the credits goes to Kleiders Custom Renderer
 public class TotisCustomSkinRenderer {
 
-    public static void renderFirstPersonSkin(ResourceLocation texture, RenderHandEvent event) {
-        // This method NEEDS to be in a "RenderHandEvent"
-        event.setCanceled(true);
-        event.getPoseStack().pushPose();
-        if(Minecraft.getInstance().player != null) {
-            Player player = Minecraft.getInstance().player;
-            boolean isMainHand = event.getHand() == InteractionHand.MAIN_HAND;
-            if (isMainHand && !player.isInvisible() && event.getItemStack().isEmpty()) {
-                HumanoidArm enumhandside = isMainHand ? player.getMainArm() : player.getMainArm().getOpposite();
-                FirstPersonHandRenderer.renderArmFirstPersonLayered(texture, event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight(), event.getEquipProgress(), event.getSwingProgress(), enumhandside);
-                //event.setCanceled(true);
-            }
-        }
-        event.getPoseStack().popPose();
-    }
     public static void renderSkin(ResourceLocation texture, RenderLivingEvent _evt, Entity entity, boolean hideBaseSkin, boolean ...conditions) {
         // This method NEEDS to be in a "RenderLivingEvent"
         if (entity == null) return;
